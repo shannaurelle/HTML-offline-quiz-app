@@ -2,12 +2,32 @@
 <html>
 <head>
 <style>
+main{
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+.field{
+	display:block;
+}
+#questionField{
+	size: 1.5em;
+	border: none;
+}
+#answerField{
+	
+}
 </style>
 </head>
 <body>
+
+<main>
 <form>
-<input class="field" name="answer" type="text"></input>
+<input id="questionField" class="field" name="question" placeholder="Question here" type="text">
+<input id="answerField" class="field" name="answer" placeholder="Answer here" type="text">
 </form>
+<main>
+
 </body>
 <script>
 </script>
