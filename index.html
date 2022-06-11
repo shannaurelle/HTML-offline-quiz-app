@@ -114,6 +114,7 @@ var opcodes = [
 
 function reload(){
   document.getElementById("restartButton").style.display = "none";
+  document.getElementById("scoreField").value = "";
   createProgressbar('progressbar1', '60s', function() {
     alert('Time is up!');
     document.getElementById("restartButton").style.display = "block";
