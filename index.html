@@ -113,7 +113,12 @@ var opcodes = [
 ];
 
 function reload(){
-	window.location.reload();
+  document.getElementById("restartButton").style.display = "none";
+  createProgressbar('progressbar1', '60s', function() {
+    alert('Time is up!');
+    document.getElementById("restartButton").style.display = "block";
+  });
+  createQuestionAnswer();
 }
 function createQuestionAnswer(){
 	var index = Math.floor(Math.random() * opcodes.length);
@@ -146,6 +151,8 @@ function calculateScore(){
 function createProgressbar(id, duration, callback) {
   // We select the div that we want to turn into a progressbar
   var progressbar = document.getElementById(id);
+  // Empty the innerHTML 
+  progressbar.innerHTML = "";
   progressbar.className = 'progressbar';
 
   // We create the div that changes width to show progress
