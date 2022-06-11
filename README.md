@@ -4,7 +4,7 @@ A light quiz app using HTML5, CSS3, and JS
 
 ## First Version Release
 
-This quiz app only deals with MIPS Opcodes. Will soon release it on some free hosting site for personal use. 
+This quiz app only deals with MIPS Opcodes. It is now open at https://imaginative-zabaione-d397b9.netlify.app/ 
 
 ## Queries
 
