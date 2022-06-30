@@ -4,6 +4,12 @@ A light quiz app using HTML5, CSS3, and JS
 
 ## Changelog
 
+#### Second Version Release
+
+The quiz asks the instruction given the funct and opcode. It also gives the correct answer
+of the last question if a wrong answer is given. It is still hosted at the same site
+of the first version. 
+
 #### First Version Release
 
 This quiz app only deals with MIPS Opcodes. It is now open at https://imaginative-zabaione-d397b9.netlify.app/ 
