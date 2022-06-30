@@ -18,7 +18,7 @@ form {  max-width: 80vh; }
 	margin: auto;
 	margin-top: 10px;
 }
-#questionField, #scoreField{
+#opcodeField, #functField, #scoreField{
 	size: 1.5em;
 	border: none;
 }
@@ -62,12 +62,14 @@ form {  max-width: 80vh; }
 <main>
 
 <form id="myForm">
-<h1> MIPS Opcode Trainer </h1>
-<h2> Give the opcode of the MIPS instruction below </h2>
+<h1> MIPS Instruction Trainer </h1>
+<h2> Give the MIPS instruction with the following opcode and funct </h2>
 <em> Time Remaining </em>
 <div id='progressbar1' class="field"></div>
-<div> <em> Instruction </em> </div>
-<input id="questionField" class="field" name="question" placeholder="Question here" type="text" disabled>
+<div> <em> Opcode </em> </div>
+<input id="opcodeField" class="field" name="question" placeholder="Opcode here" type="text" disabled>
+<div> <em> Funct </em> </div>
+<input id="functField" class="field" name="question" placeholder="Funct here" type="text" disabled>
 <input id="answerField" class="field" name="answer" placeholder="Answer here" type="text">
 <input class="field" type="submit" onclick="calculateScore()"><br>
 <div><em> Score </em></div>
@@ -80,36 +82,37 @@ form {  max-width: 80vh; }
 </body>
 <script>
 var opcodes = [
-	{ key: "add", value: "0" },
-	{ key: "addi", value: "8" },
-	{ key: "addiu", value: "9" },
-	{ key: "addu", value: "0" },
-	{ key: "and", value: "0" },
-	{ key: "andi",  value: "c" },
-	{ key: "beq",  value: "4" },
-	{ key: "bne",  value: "5" },
-	{ key: "j",  value: "2" },
-	{ key: "jal",  value: "3" },
-	{ key: "jr",  value: "0" },
-	{ key: "lbu",  value: "24" },
-	{ key: "lhu",  value: "25" },
-	{ key: "ll",  value: "30" },
-	{ key: "lui",  value: "f" },
-	{ key: "lw",  value: "23" },
-	{ key: "nor",  value: "0" },
-	{ key: "or",  value: "0" },
-	{ key: "ori",  value: "d" },
-	{ key: "slt",  value: "0" },
-	{ key: "slti",  value: "a" },
-	{ key: "sltu",  value: "0" },
-	{ key: "sll",  value: "0" },
-	{ key: "srl",  value: "0" },
-	{ key: "sb",  value: "28" },
-	{ key: "sc",  value: "38" },
-	{ key: "sh",  value: "29" },
-	{ key: "sw",  value: "2b" },
-	{ key: "sub",  value: "0" },
-	{ key: "subu",  value: "0" }
+	{ key: "add", opcode: "0", funct:"20" },
+	{ key: "addi", opcode: "8", funct:"N/A" },
+	{ key: "addiu", opcode: "9", funct:"N/A" },
+	{ key: "addu", opcode: "0", funct:"21" },
+	{ key: "and", opcode: "0", funct:"24" },
+	{ key: "andi",  opcode: "c", funct:"N/A" },
+	{ key: "beq",  opcode: "4", funct:"N/A" },
+	{ key: "bne",  opcode: "5", funct:"N/A" },
+	{ key: "j",  opcode: "2", funct:"N/A" },
+	{ key: "jal",  opcode: "3", funct:"N/A" },
+	{ key: "jr",  opcode: "0", funct:"08" },
+	{ key: "lbu",  opcode: "24", funct:"N/A" },
+	{ key: "lhu",  opcode: "25", funct:"N/A" },
+	{ key: "ll",  opcode: "30", funct:"N/A" },
+	{ key: "lui",  opcode: "f", funct:"N/A" },
+	{ key: "lw",  opcode: "23", funct:"N/A" },
+	{ key: "nor",  opcode: "0", funct:"27" },
+	{ key: "or",  opcode: "0", funct:"25" },
+	{ key: "ori",  opcode: "d", funct:"N/A" },
+	{ key: "slt",  opcode: "0", funct:"2a" },
+	{ key: "slti",  opcode: "a", funct:"N/A" },
+  { key: "sltiu",  opcode: "b", funct:"N/A" },
+	{ key: "sltu",  opcode: "0", funct:"2b" },
+	{ key: "sll",  opcode: "0", funct:"00" },
+	{ key: "srl",  opcode: "0", funct:"02" },
+	{ key: "sb",  opcode: "28", funct:"N/A" },
+	{ key: "sc",  opcode: "38", funct:"N/A" },
+	{ key: "sh",  opcode: "29", funct:"N/A" },
+	{ key: "sw",  opcode: "2b", funct:"N/A" },
+	{ key: "sub",  opcode: "0", funct:"22" },
+	{ key: "subu",  opcode: "0", funct:"23" }
 ];
 
 function reload(){
@@ -123,9 +126,11 @@ function reload(){
 }
 function createQuestionAnswer(){
 	var index = Math.floor(Math.random() * opcodes.length);
-	var question = opcodes[index].key;
-	var answer = opcodes[index].value;
-	document.getElementById("questionField").value = question;
+	var opcode = opcodes[index].opcode;
+  var funct = opcodes[index].funct;
+	var answer = opcodes[index].key;
+	document.getElementById("opcodeField").value = opcode;
+  document.getElementById("functField").value = funct;
 	document.getElementById("correctAnswerField").value = answer;
 }
 
